@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <title>Control Horas</title>
+</head>
+<header>
+    <div>
+        <h1>Control de Horas</h1>
+        <!-- <p>Ingrese la cantidad de horas trabajadas por semana:</p> -->
+    <form action="" class="formulario" id="formulario">
+        <div class="form-group">
+        <label for="Fecha"></label>
+        <input type="date" id="Fecha" name="fecha" readonly>
+        <label for="Nombre" title="Por defecto sera (Datostrabajador.xlsx)">Nombre del archivo<a>(Opcional)</a></label>
+        <input type="text" id="Nombre" name="Nombre" placeholder="Nombre del archivo">
+        <label for="Horas" >Horas/dia:</label>
+        <input type="number" id="Horas" name="Horas" required>
+        <label for="Dias">Días trabajados:</label>
+        <input type="number" id="Dias" name="dias" required>  
+        <label for="HorasExtra">Horas extras:</label>
+        <input type="number" id="HorasExtra" name="horasExtra">  
+        <label for="HorasNocturnas">Horas nocturnas:</label>
+        <input type="number" id="HorasNocturnas" name="HorasNocturnas">
+        <label for="HorasExtraNocturna">Horas extra nocturnas</label>
+        <input type="number" id="HorasExtraNocturnas" name="HorasExtraNocturnas">
+        <label for="HorasFaltantes">Horas faltantes:</label>
+        <input type="number" id="HorasFaltantes" name="horasFaltantes">  
+        <label for="SextoDia">Sexto día:</label>
+        <input type="number" id="SextoDia" name="sextoDia" required>  
+    </div>
+    <div class="form-group">
+        <button type="submit" id="btnEnviar">Enviar</button>
+    </div>
+    </form>
+    <div class="botones" id="botonesContainer">
+        <button id="btnSubirDrive" class="Drive" type="button">Subir a Google Drive</button>
+        <button id="btnDescargarPDF" class="Pdf" type="button">Descargar como PDF</button>
+    </div>
+    </div>
+</header>
+<body>
+    <div class="resultado table hidden" id="tablaContainer">
+        <h2 id="nombreArchivo" class="nombreArchivo"></h2>
+        <p id="resultado"></p>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Horas trabajadas</th>
+                        <th>Días trabajados</th>
+                        <th>Horas extras</th>
+                        <th>Horas nocturnas</th>
+                        <th>Horas extra nocturnas</th>
+                        <th>Horas faltantes</th>
+                        <th>Sexto día</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaResultados">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="index.js"></script>
+</body>
+</html>
