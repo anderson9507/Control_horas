@@ -17,8 +17,8 @@
     <form action="" class="formulario" id="formulario">
         <div class="form-group">
         <label for="Fecha"></label>
-        <input type="date" id="Fecha" name="fecha" readonly>
-        <label for="Nombre" title="Por defecto sera (Datostrabajador.xlsx)">Nombre del archivo<a>(Opcional)</a></label>
+        <input type="date" id="Fecha" class="Fecha" name="fecha" readonly>
+        <label for="Nombre" title="Por defecto sera (Datostrabajador.xlsx)" id="NombreArchivo">Nombre del archivo<a>(Opcional)</a></label>
         <input type="text" id="Nombre" name="Nombre" placeholder="Nombre del archivo">
         <label for="Horas" >Horas/dia:</label>
         <input type="number" id="Horas" name="Horas" required>
@@ -33,7 +33,7 @@
         <label for="HorasFaltantes">Horas faltantes:</label>
         <input type="number" id="HorasFaltantes" name="horasFaltantes">  
         <label for="SextoDia">Sexto día:</label>
-        <input type="number" id="SextoDia" name="sextoDia" required>  
+        <input type="number" id="SextoDia" name="sextoDia">  
     </div>
     <div class="form-group">
         <button type="submit" id="btnEnviar">Enviar</button>
