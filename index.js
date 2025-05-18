@@ -1,4 +1,4 @@
-    //Funcion para mostrar la fecha actual en el input de fecha
+//Funcion para mostrar la fecha actual en el input de fecha
     window.addEventListener('DOMContentLoaded', function () {
         const inputFecha = document.getElementById('Fecha');
         if (inputFecha) {
@@ -15,6 +15,9 @@ document.querySelector('form').addEventListener('submit', function (event) {
 
     // Obtener los valores de los campos y asignar 0 si están vacíos
     const nombre = document.getElementById('Nombre').value || "DatosTrabajador.xlsx";
+    if(nombre){
+        document.getElementById('Nombre').value = nombre.replace(/\s+/g, '');
+    }
     const fecha = document.getElementById('Fecha').value;
     const horas = parseFloat(document.getElementById('Horas').value) || 0;
     const dias = parseFloat(document.getElementById('Dias').value) || 0;
@@ -48,7 +51,10 @@ document.querySelector('form').addEventListener('submit', function (event) {
     // Mostrar los datos en la tabla
     const tablaResultados = document.getElementById('tablaResultados');
     const nombreArchivo = document.getElementById('nombreArchivo');
-    nombreArchivo.textContent = datosTrabajador["Nombre"];
+    if(nombreArchivo) {
+        nombreArchivo.textContent = nombre;
+    }
+
     tablaResultados.innerHTML = `
         <tr>
             <td>${datosTrabajador["Fecha"]}</td>
@@ -56,13 +62,14 @@ document.querySelector('form').addEventListener('submit', function (event) {
             <td>${datosTrabajador["Días Trabajados"]}</td>
             <td>${datosTrabajador["Horas Extra"]}</td>
             <td>${datosTrabajador["Horas Nocturnas"]}</td>
-            <td>${datosTrabajador["Horas Extra Nocturnas"]}</td>
             <td>${datosTrabajador["Horas Faltantes"]}</td>
             <td>${datosTrabajador["Sexto Día"]}</td>
             <td>${datosTrabajador["Total Horas"]}</td>
         </tr>
     `;
 
+    // ocultar el formulario
+    document.getElementById('formulario').classList.add('hidden');
     // Mostrar la tabla quitando la clase 'hidden'
     const tablaContainer = document.getElementById('tablaContainer');
     tablaContainer.classList.remove('hidden');
@@ -104,16 +111,19 @@ document.getElementById('btnSubirDrive').addEventListener('click', async functio
 
             const accessToken = tokenResponse.access_token;
 
+            const nombreArchivoLimpio = (datosTrabajador["Nombre"] || "DatosTrabajador")
+    .replace(/[\s\\\/\?\*\[\]\:]+/g, '');
+
             // Generar archivo Excel
             const workbook = XLSX.utils.book_new();
             const worksheet = XLSX.utils.json_to_sheet([datosTrabajador]);
-            XLSX.utils.book_append_sheet(workbook, worksheet, "DatosTrabajador");
+            XLSX.utils.book_append_sheet(workbook, worksheet, "hoja1"); // Nombre de la hoja limpio
             const wbout = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
             const excelFile = new Blob([wbout], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
             
 
             const metadata = {
-                name: "DatosTrabajador.xlsx",
+                name: nombreArchivoLimpio + ".xlsx", // Nombre de archivo limpio y personalizado
                 mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             };
 
@@ -170,6 +180,31 @@ document.getElementById('btnDescargarPDF').addEventListener('click', function ()
 
     const pdfData = doc.output('bloburl');
     window.open(pdfData, "_blank");
+});
+
+document.getElementById('btnnuevo').addEventListener('click', function () {
+    // Limpiar la tabla
+    const tablaResultados = document.getElementById('tablaResultados');
+    tablaResultados.innerHTML = '';
+
+    // Ocultar la tabla
+    const tablaContainer = document.getElementById('tablaContainer');
+    tablaContainer.classList.add('hidden');
+
+    // Mostrar el formulario
+    document.getElementById('formulario').classList.remove('hidden');
+
+    // Restablecer los valores de los inputs
+    document.querySelector('form').reset();
+
+    const inputFecha = document.getElementById('Fecha');
+    if (inputFecha) {
+        const hoy = new Date();
+        const yyyy = hoy.getFullYear();
+        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+        const dd = String(hoy.getDate()).padStart(2, '0');
+        inputFecha.value = `${yyyy}-${mm}-${dd}`;
+    }
 });
 
 

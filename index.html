@@ -11,7 +11,7 @@
     <title>Control Horas</title>
 </head>
 <header>
-    <div>
+    <div class="container">
         <h1>Control de Horas</h1>
         <!-- <p>Ingrese la cantidad de horas trabajadas por semana:</p> -->
     <form action="" class="formulario" id="formulario">
@@ -48,26 +48,27 @@
 <body>
     <div class="resultado table hidden" id="tablaContainer">
         <h2 id="nombreArchivo" class="nombreArchivo"></h2>
-        <p id="resultado"></p>
-        <div class="table">
+        <p id="resultado">Previsualizacion</p>
+        <div class="tableHeader">
             <table>
                 <thead>
                     <tr>
                         <th>Fecha</th>
-                        <th>Horas trabajadas</th>
+                        <th>Horas Ordinarias</th>
                         <th>Días trabajados</th>
                         <th>Horas extras</th>
                         <th>Horas nocturnas</th>
-                        <th>Horas extra nocturnas</th>
                         <th>Horas faltantes</th>
                         <th>Sexto día</th>
-                        <th>Total</th>
+                        <th>Total Ordinarias</th>
                     </tr>
                 </thead>
-                <tbody id="tablaResultados">
+                <tbody id="tablaResultados" class="tablaResultados">
+                    <!-- Aquí se insertarán las filas de la tabla -->
                 </tbody>
             </table>
         </div>
+        <button class="btnnuevo" id="btnnuevo">Nuevo Registro</button>
     </div>
 </div>
 
