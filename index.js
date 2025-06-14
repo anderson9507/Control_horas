@@ -94,7 +94,13 @@ document.querySelector('form').addEventListener('submit', function (event) {
 document.getElementById('btnSubirDrive').addEventListener('click', async function () {
     const datosTrabajador = window.datosTrabajador;
     if (!datosTrabajador) {
-        alert("Primero llena y envía el formulario.");
+        Swal.fire({
+            title: 'Ups!',
+            text: "Primero llena y envía el formulario.",
+            icon: 'info',
+            confirmButtonText: 'Aceptar',
+            width: '40%'
+        });
         return;
     }
 
@@ -105,7 +111,13 @@ document.getElementById('btnSubirDrive').addEventListener('click', async functio
         scope: 'https://www.googleapis.com/auth/drive.file',
         callback: async (tokenResponse) => {
             if (!tokenResponse || !tokenResponse.access_token) {
-                alert("Error al obtener el token de acceso.");
+                Swal.fire({
+                    title: 'Error',
+                    text: "No se pudo obtener el token de acceso. Por favor, inténtalo de nuevo.",
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    width: '40%'
+                });
                 return;
             }
 
@@ -145,11 +157,22 @@ document.getElementById('btnSubirDrive').addEventListener('click', async functio
                 }
 
                 const data = await response.json();
-                console.log("Archivo subido:", data);
-                alert("Archivo subido exitosamente a Google Drive.");
+                Swal.fire({
+                    title: 'Éxito',
+                    text: `Archivo subido exitosamente: ${data.name}`,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    width: '40%'
+                });
             } catch (error) {
                 console.error("Error al subir el archivo:", error);
-                alert("Error al subir el archivo a Google Drive.");
+                Swal.fire({
+                    title: 'Error',
+                    text: "Error al subir el archivo a Google Drive.",
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    width: '40%'
+                });
             }
         }
     });
@@ -162,7 +185,13 @@ document.getElementById('btnSubirDrive').addEventListener('click', async functio
 document.getElementById('btnDescargarPDF').addEventListener('click', function () {
     const datosTrabajador = window.datosTrabajador;
     if (!datosTrabajador) {
-        alert("Primero llena y envía el formulario.");
+        Swal.fire({
+            title: 'Error',
+            text: "Primero llena y envía el formulario.",
+            icon: 'info',
+            confirmButtonText: 'Aceptar',
+            width: '40%'
+        });
         return;
     }
 
@@ -178,12 +207,13 @@ document.getElementById('btnDescargarPDF').addEventListener('click', function ()
         startY: 20
     });
 
+    // abrir el PDF en una nueva pestaña
     const pdfData = doc.output('bloburl');
     window.open(pdfData, "_blank");
 });
 
-document.getElementById('btnnuevo').addEventListener('click', function () {
     // Limpiar la tabla
+document.getElementById('btnnuevo').addEventListener('click', function () {
     const tablaResultados = document.getElementById('tablaResultados');
     tablaResultados.innerHTML = '';
 
@@ -206,5 +236,6 @@ document.getElementById('btnnuevo').addEventListener('click', function () {
         inputFecha.value = `${yyyy}-${mm}-${dd}`;
     }
 });
+
 
 
