@@ -1,18 +1,18 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 100%;
 }
 
-h1{
-    font-size: 2rem;
+h1 {
+    font-size: 150%;
     color: #131212fd;
     text-align: center;
     margin: 2%;
 }
 
-body{
+body {
     background-color: #f0f0f0;
     background-image: url(/fondo.jpg);
     background-size: cover;
@@ -80,7 +80,8 @@ button:active {
 }
 
 .Drive {
-    background-color: rgb(0,179,39);
+    background-color: rgb(0, 179, 39);
+    margin: 0 2%;
 }
 
 .Drive:hover {
@@ -89,7 +90,9 @@ button:active {
 
 .Pdf {
     background-color: rgb(255, 0, 0);
+    margin: 0 2%;
 }
+
 .Pdf:hover {
     background-color: rgb(200, 0, 0);
 }
@@ -104,7 +107,7 @@ input:hover {
     transition: box-shadow 0.2s;
 }
 
-p{
+p {
     line-height: 1.5;
     margin: 3% 0;
     text-align: center;
@@ -145,26 +148,18 @@ p{
 table tr {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;;
-}
-
-.Drive {
-    margin: 0 2%;
-}
-
-.Pdf {
-    margin: 0 2%;
+    justify-content: space-between;
+    ;
 }
 
 
 input[type="date"] {
     align-self: flex-end;
-    font-size: 70%;
+    font-size: 90%;
+    width: 40%;
     text-align: center;
-    width: 45%;
 }
 
-/* @media (min-width: 320px) and (max-width: 480px) { */
 
 button {
     width: 100%;
@@ -179,26 +174,6 @@ button {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-/* .resultado th{
-    width: 90%;
-    padding: 10px;
-    text-align: center;
-    display: block;
-    padding: 10px;
-    font-size: 70%;
-    border: 1px solid #ccc;  
-} */
-
-/* .tablaResultados td{
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    display: block;
-    padding: 10px;
-    font-size: 70%;
-    border: 1px solid #ccc;  
-} */
-
 table {
     width: 100%;
     display: flex;
@@ -207,12 +182,69 @@ table {
     align-items: center;
 }
 
-
-
 .botones {
     width: 100%;
     margin: 10px auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .formulario {
+        width: 80%;
+    }
+
+    .form-group {
+        width: 90%;
+    }
+
+    input[type="date"] {
+        width: 40%;
+        font-size: 80%;
+        text-align: center;
+    }
+
+    .botones {
+        width: 83%;
+    }
+}
+
+@media (width >= 769px) {
+
+    .formulario {
+        width: 70%;
+        margin: 2% auto;
+    }
+
+    .resultado {
+        width: 70%;
+    }
+
+    .resultado table {
+        width: 100%;
+    }
+
+    .table {
+        font-size: large;
+    }
+
+    .btnnuevo {
+        width: 25.5%;
+        margin: 2% auto;
+    }
+
+    .botones {
+    width: 73%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+    input[type="date"] {
+        width: 30%;
+        font-size: 90%;
+        text-align: center;
+    }
 }

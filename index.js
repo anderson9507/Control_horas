@@ -14,7 +14,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
     event.preventDefault(); // Evitar el envío del formulario
 
     // Obtener los valores de los campos y asignar 0 si están vacíos
-    const nombre = document.getElementById('Nombre').value || "DatosTrabajador.xlsx";
+    const nombre = document.getElementById('Nombre').value || "DatosTrabajador";
     if(nombre){
         document.getElementById('Nombre').value = nombre.replace(/\s+/g, '');
     }
@@ -30,7 +30,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
     // Calcular el total de horas trabajadas
     const totalHoras = (horas * dias) + horasExtra - horasFaltantes;
     // const totalSextoDia = (8 * sextoDia); // Calcular las horas del sexto día
-    const totalNocturnas = (horasNocturnas + horasExtraNocturnas); // Calcular las horas nocturnas
+    // const totalNocturnas = (horasNocturnas + horasExtraNocturnas); // Calcular las horas nocturnas
     const totalFinal = parseInt(totalHoras);
 
     // Crear un objeto para almacenar los datos
